@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "pl.marcinwojdat.calculatorapplication"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "pl.marcinwojdat.calculatorapplication"
