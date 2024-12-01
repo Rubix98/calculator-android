@@ -23,7 +23,8 @@ import pl.marcinwojdat.calculatorapplication.buttons.OperationButton
 
 @Composable
 fun Calculator(
-    calculatorViewModel: CalculatorViewModel,
+    calculatorState: String,
+    onAction: (CalculatorAction) -> Unit,
     modifier: Modifier = Modifier,
     buttonSpacing: Dp = 8.dp
 ) {
@@ -37,7 +38,7 @@ fun Calculator(
             verticalArrangement = Arrangement.spacedBy(buttonSpacing)
         ) {
             Text(
-                text = calculatorViewModel.state.calculatorState,
+                text = calculatorState,
                 textAlign = TextAlign.End,
                 fontSize = 80.sp,
                 modifier = Modifier
@@ -49,48 +50,48 @@ fun Calculator(
                 horizontalArrangement = Arrangement.spacedBy(buttonSpacing),
                 modifier = Modifier.fillMaxWidth()
             ) {
-                CalculatorButton(symbol = "C", onClick = {calculatorViewModel.onAction(CalculatorAction.Clear)}, modifier = Modifier.weight(2f).aspectRatio(2f))
-                CalculatorButton(symbol = "Del", onClick = {calculatorViewModel.onAction(CalculatorAction.Delete)}, modifier = Modifier.weight(1f).aspectRatio(1f), )
-                OperationButton(symbol = "/", onClick = calculatorViewModel::onAction, modifier = Modifier.weight(1f).aspectRatio(1f))
+                CalculatorButton(symbol = "C", onClick = {onAction(CalculatorAction.Clear)}, modifier = Modifier.weight(2f).aspectRatio(2f))
+                CalculatorButton(symbol = "Del", onClick = {onAction(CalculatorAction.Delete)}, modifier = Modifier.weight(1f).aspectRatio(1f), )
+                OperationButton(symbol = "/", onClick = onAction, modifier = Modifier.weight(1f).aspectRatio(1f))
             }
 
             Row(
                 horizontalArrangement = Arrangement.spacedBy(buttonSpacing),
                 modifier = Modifier.fillMaxWidth()
             ) {
-                NumberButton(symbol = "7", onClick = calculatorViewModel::onAction, modifier = Modifier.weight(1f).aspectRatio(1f))
-                NumberButton(symbol = "8", onClick = calculatorViewModel::onAction, modifier = Modifier.weight(1f).aspectRatio(1f))
-                NumberButton(symbol = "9", onClick = calculatorViewModel::onAction, modifier = Modifier.weight(1f).aspectRatio(1f))
-                OperationButton(symbol = "*", onClick = calculatorViewModel::onAction, modifier = Modifier.weight(1f).aspectRatio(1f))
+                NumberButton(symbol = "7", onClick = onAction, modifier = Modifier.weight(1f).aspectRatio(1f))
+                NumberButton(symbol = "8", onClick = onAction, modifier = Modifier.weight(1f).aspectRatio(1f))
+                NumberButton(symbol = "9", onClick = onAction, modifier = Modifier.weight(1f).aspectRatio(1f))
+                OperationButton(symbol = "*", onClick = onAction, modifier = Modifier.weight(1f).aspectRatio(1f))
             }
 
             Row(
                 horizontalArrangement = Arrangement.spacedBy(buttonSpacing),
                 modifier = Modifier.fillMaxWidth()
             ) {
-                NumberButton(symbol = "4", onClick = calculatorViewModel::onAction, modifier = Modifier.weight(1f).aspectRatio(1f))
-                NumberButton(symbol = "5", onClick = calculatorViewModel::onAction, modifier = Modifier.weight(1f).aspectRatio(1f))
-                NumberButton(symbol = "6", onClick = calculatorViewModel::onAction, modifier = Modifier.weight(1f).aspectRatio(1f))
-                OperationButton(symbol = "-", onClick = calculatorViewModel::onAction, modifier = Modifier.weight(1f).aspectRatio(1f))
+                NumberButton(symbol = "4", onClick = onAction, modifier = Modifier.weight(1f).aspectRatio(1f))
+                NumberButton(symbol = "5", onClick = onAction, modifier = Modifier.weight(1f).aspectRatio(1f))
+                NumberButton(symbol = "6", onClick = onAction, modifier = Modifier.weight(1f).aspectRatio(1f))
+                OperationButton(symbol = "-", onClick = onAction, modifier = Modifier.weight(1f).aspectRatio(1f))
             }
 
             Row(
                 horizontalArrangement = Arrangement.spacedBy(buttonSpacing),
                 modifier = Modifier.fillMaxWidth()
             ) {
-                NumberButton(symbol = "1", onClick = calculatorViewModel::onAction, modifier = Modifier.weight(1f).aspectRatio(1f))
-                NumberButton(symbol = "2", onClick = calculatorViewModel::onAction, modifier = Modifier.weight(1f).aspectRatio(1f))
-                NumberButton(symbol = "3", onClick = calculatorViewModel::onAction, modifier = Modifier.weight(1f).aspectRatio(1f))
-                OperationButton(symbol = "+", onClick = calculatorViewModel::onAction, modifier = Modifier.weight(1f).aspectRatio(1f))
+                NumberButton(symbol = "1", onClick = onAction, modifier = Modifier.weight(1f).aspectRatio(1f))
+                NumberButton(symbol = "2", onClick = onAction, modifier = Modifier.weight(1f).aspectRatio(1f))
+                NumberButton(symbol = "3", onClick = onAction, modifier = Modifier.weight(1f).aspectRatio(1f))
+                OperationButton(symbol = "+", onClick = onAction, modifier = Modifier.weight(1f).aspectRatio(1f))
             }
 
             Row(
                 horizontalArrangement = Arrangement.spacedBy(buttonSpacing),
                 modifier = Modifier.fillMaxWidth()
             ) {
-                NumberButton(symbol = "0", onClick = calculatorViewModel::onAction, modifier = Modifier.weight(2f).aspectRatio(2f))
-                CalculatorButton(symbol = ".", onClick = {calculatorViewModel.onAction(CalculatorAction.Decimal)}, modifier = Modifier.weight(1f).aspectRatio(1f))
-                CalculatorButton(symbol = "=", onClick = {calculatorViewModel.onAction(CalculatorAction.Calculate)}, modifier = Modifier.weight(1f).aspectRatio(1f).background(color = Color(255, 165, 0)))
+                NumberButton(symbol = "0", onClick = onAction, modifier = Modifier.weight(2f).aspectRatio(2f))
+                CalculatorButton(symbol = ".", onClick = {onAction(CalculatorAction.Decimal)}, modifier = Modifier.weight(1f).aspectRatio(1f))
+                CalculatorButton(symbol = "=", onClick = {onAction(CalculatorAction.Calculate)}, modifier = Modifier.weight(1f).aspectRatio(1f).background(color = Color(255, 165, 0)))
             }
         }
     }

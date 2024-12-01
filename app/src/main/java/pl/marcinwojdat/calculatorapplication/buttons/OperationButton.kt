@@ -27,10 +27,10 @@ fun OperationButton(
 
  fun getOperationFromSymbol(symbol: String): CalculatorOperation {
     when(symbol) {
-        "+" -> Add
-        "-" -> Substract
-        "*" -> Multiply
-        "/" -> Divide
+        "+" -> return Add
+        "-" -> return Substract
+        "*" -> return Multiply
+        "/" -> return Divide
     }
     throw RuntimeException("Unsupported operation")
 }
