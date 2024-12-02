@@ -1,9 +1,10 @@
-package pl.marcinwojdat.calculatorapplication
+package pl.marcinwojdat.calculatorapplication.components
 
 import android.widget.Toast
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalContext
+import pl.marcinwojdat.calculatorapplication.CalculatorViewModel
 
 @Composable
 fun ErrorToast(viewModel: CalculatorViewModel) {

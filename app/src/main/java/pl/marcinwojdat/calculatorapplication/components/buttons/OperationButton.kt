@@ -1,16 +1,15 @@
-package pl.marcinwojdat.calculatorapplication.buttons
+package pl.marcinwojdat.calculatorapplication.components.buttons
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import pl.marcinwojdat.calculatorapplication.CalculatorAction
 import pl.marcinwojdat.calculatorapplication.CalculatorOperation
 import pl.marcinwojdat.calculatorapplication.CalculatorOperation.Add
 import pl.marcinwojdat.calculatorapplication.CalculatorOperation.Divide
 import pl.marcinwojdat.calculatorapplication.CalculatorOperation.Multiply
 import pl.marcinwojdat.calculatorapplication.CalculatorOperation.Substract
+import pl.marcinwojdat.calculatorapplication.ui.theme.OperatorButtonColor
 
 @Composable
 fun OperationButton(
@@ -21,7 +20,7 @@ fun OperationButton(
     CalculatorButton(
         symbol = symbol,
         onClick = {onClick(CalculatorAction.Operation(getOperationFromSymbol(symbol)))},
-        modifier = modifier.background(color = Color(255, 165, 0))
+        modifier = Modifier.background(color = OperatorButtonColor).then(modifier)
     )
 }
 

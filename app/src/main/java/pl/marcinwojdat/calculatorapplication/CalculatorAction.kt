@@ -1,7 +1,7 @@
 package pl.marcinwojdat.calculatorapplication
 
 sealed class CalculatorAction {
-    data class Number(val number: Int): CalculatorAction()
+    data class Number(val number: String): CalculatorAction()
     data class Operation(val operation: CalculatorOperation): CalculatorAction()
     object Clear: CalculatorAction()
     object Delete: CalculatorAction()

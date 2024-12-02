@@ -1,4 +1,4 @@
-package pl.marcinwojdat.calculatorapplication
+package pl.marcinwojdat.calculatorapplication.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -12,15 +12,18 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import pl.marcinwojdat.calculatorapplication.buttons.CalculatorButton
-import pl.marcinwojdat.calculatorapplication.buttons.NumberButton
-import pl.marcinwojdat.calculatorapplication.buttons.OperationButton
+import pl.marcinwojdat.calculatorapplication.CalculatorAction
+import pl.marcinwojdat.calculatorapplication.components.buttons.CalculatorButton
+import pl.marcinwojdat.calculatorapplication.components.buttons.NumberButton
+import pl.marcinwojdat.calculatorapplication.components.buttons.OperationButton
+import pl.marcinwojdat.calculatorapplication.ui.theme.BackgroundColor
+import pl.marcinwojdat.calculatorapplication.ui.theme.OperatorButtonColor
+import pl.marcinwojdat.calculatorapplication.ui.theme.TextColor
 
 @Composable
 fun Calculator(
@@ -31,7 +34,7 @@ fun Calculator(
 ) {
     Box(
         modifier = modifier
-            .background(color = Color(20, 20, 20))
+            .background(color = BackgroundColor)
     ) {
         Column(
             modifier = Modifier
@@ -41,7 +44,7 @@ fun Calculator(
         ) {
             Text(
                 text = if (calculatorState.isEmpty()) "0" else calculatorState,
-                color = Color.White,
+                color = TextColor,
                 textAlign = TextAlign.End,
                 fontSize = calculateFontSizeForOperation(calculatorState),
                 lineHeight = calculateFontSizeForOperation(calculatorState),
@@ -95,7 +98,7 @@ fun Calculator(
             ) {
                 NumberButton(symbol = "0", onClick = onAction, modifier = Modifier.weight(2f).aspectRatio(2f))
                 CalculatorButton(symbol = ".", onClick = {onAction(CalculatorAction.Decimal)}, modifier = Modifier.weight(1f).aspectRatio(1f))
-                CalculatorButton(symbol = "=", onClick = {onAction(CalculatorAction.Calculate)}, modifier = Modifier.weight(1f).aspectRatio(1f).background(color = Color(255, 165, 0)))
+                CalculatorButton(symbol = "=", onClick = {onAction(CalculatorAction.Calculate)}, modifier = Modifier.weight(1f).aspectRatio(1f).background(color = OperatorButtonColor))
             }
         }
     }

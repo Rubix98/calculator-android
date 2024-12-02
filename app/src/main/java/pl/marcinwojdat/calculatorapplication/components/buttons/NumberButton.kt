@@ -1,11 +1,10 @@
-package pl.marcinwojdat.calculatorapplication.buttons
+package pl.marcinwojdat.calculatorapplication.components.buttons
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import pl.marcinwojdat.calculatorapplication.CalculatorAction
+import pl.marcinwojdat.calculatorapplication.ui.theme.NumberButtonColor
 
 @Composable
 fun NumberButton(
@@ -15,7 +14,7 @@ fun NumberButton(
 ) {
     CalculatorButton(
         symbol = symbol,
-        onClick = {onClick(CalculatorAction.Number(symbol.toInt()))},
-        modifier = Modifier.background(color = Color.DarkGray).then(modifier)
+        onClick = {onClick(CalculatorAction.Number(symbol))},
+        modifier = Modifier.background(color = NumberButtonColor).then(modifier)
     )
 }

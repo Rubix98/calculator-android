@@ -10,6 +10,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.ViewModelProvider
 import pl.marcinwojdat.calculatorapplication.ui.theme.CalculatorApplicationTheme
+import pl.marcinwojdat.calculatorapplication.components.Calculator
+import pl.marcinwojdat.calculatorapplication.components.ErrorToast
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

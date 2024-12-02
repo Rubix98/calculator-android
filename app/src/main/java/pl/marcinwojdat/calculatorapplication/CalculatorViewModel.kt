@@ -23,7 +23,7 @@ class CalculatorViewModel: ViewModel() {
         }
     }
 
-    private fun enterNumber(number: Int) { // TODO: zmienić typ number na String
+    private fun enterNumber(number: String) {
         state += number.toString()
     }
 
@@ -67,6 +67,8 @@ class CalculatorViewModel: ViewModel() {
     fun clearErrorMessage() {
         errorMessage = null
     }
+
+
 
     private fun isLastCharacterADot(): Boolean {
         return state.isNotEmpty() && state.last() == '.'
