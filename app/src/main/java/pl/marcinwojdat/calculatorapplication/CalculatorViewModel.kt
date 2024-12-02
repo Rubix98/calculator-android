@@ -46,7 +46,7 @@ class CalculatorViewModel: ViewModel() {
     }
 
     private fun calculate() {
-        TODO("Not yet implemented")
+        state = CalculatorService().calculate(state).toString()
     }
 
     private fun isLastCharacterADot(): Boolean {
