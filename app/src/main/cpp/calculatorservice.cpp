@@ -6,6 +6,7 @@
 using namespace std;
 
 const vector<set<char>> OPERATORS = {{'+', '-'}, {'*', '/'}};
+const double EPS = 1e-9;
 
 vector<string> splitOperationByOperators(string operation, set<char> operators) {
     vector<string> result;
@@ -25,7 +26,13 @@ double doMath(double num1, string op, double num2) {
     if (op == "+") return num1 + num2;
     if (op == "-") return num1 - num2;
     if (op == "*") return num1 * num2;
-    if (op == "/") return num1 / num2;
+    if (op == "/") {
+        if (abs(num2) < EPS) {
+            throw runtime_error("divide by zero");
+        } else {
+            return num1/num2;
+        }
+    }
     return 0;
 }
 
@@ -55,6 +62,13 @@ Java_pl_marcinwojdat_calculatorapplication_CalculatorService_calculate(JNIEnv *e
     string operation = jstringToString(env, arg);
     if (operation.empty()) return 0;
     if (operation[0] == '-') operation = "0" + operation;
-    return calculateReq(operation);
+
+    try {
+        return calculateReq(operation);
+    } catch (exception e) {
+        jclass jc = env->FindClass("java/lang/RuntimeException");
+        if(jc) env->ThrowNew(jc, "e.what()");
+        return 0;
+    }
 }
 

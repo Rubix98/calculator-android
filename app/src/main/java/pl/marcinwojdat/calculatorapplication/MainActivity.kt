@@ -26,6 +26,7 @@ class MainActivity : ComponentActivity() {
                         onAction = calculatorViewModel::onAction,
                         modifier = Modifier.padding(innerPadding).fillMaxSize()
                     )
+                    ErrorToast(calculatorViewModel)
                 }
             }
         }

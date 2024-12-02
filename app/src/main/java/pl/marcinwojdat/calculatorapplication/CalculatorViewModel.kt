@@ -9,6 +9,9 @@ class CalculatorViewModel: ViewModel() {
     var state by mutableStateOf("")
         private set
 
+    var errorMessage by mutableStateOf<String?>(null)
+        private set
+
     fun onAction(action: CalculatorAction) {
         when(action) {
             is CalculatorAction.Number -> enterNumber(action.number)
@@ -46,7 +49,16 @@ class CalculatorViewModel: ViewModel() {
     }
 
     private fun calculate() {
-        state = CalculatorService().calculate(state).toString()
+        try {
+            state = CalculatorService().calculate(state).toString()
+        } catch (e: RuntimeException) {
+            errorMessage = "W tym kalkulatorze nie dzielimy przez 0"
+            state = ""
+        }
+    }
+
+    fun clearErrorMessage() {
+        errorMessage = null
     }
 
     private fun isLastCharacterADot(): Boolean {
