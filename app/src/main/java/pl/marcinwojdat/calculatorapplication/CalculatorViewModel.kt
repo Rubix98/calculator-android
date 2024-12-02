@@ -35,6 +35,9 @@ class CalculatorViewModel: ViewModel() {
     }
 
     private fun enterDecimal() {
+        if (state.isEmpty()) {
+            state = "0"
+        }
         if (canDotBePlaced()) {
             state += "."
         }
@@ -49,6 +52,10 @@ class CalculatorViewModel: ViewModel() {
     }
 
     private fun calculate() {
+        if (isLastCharacterAnOperation() || isLastCharacterADot()) {
+            deleteLastCharacter()
+        }
+
         try {
             state = CalculatorService().calculate(state).toString()
         } catch (e: RuntimeException) {
