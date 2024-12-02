@@ -5,5 +5,5 @@ class CalculatorService {
         System.loadLibrary("calculatorservice")
     }
 
-    external fun calculate(arg: String): Int;
+    external fun calculate(arg: String): Double;
 }
