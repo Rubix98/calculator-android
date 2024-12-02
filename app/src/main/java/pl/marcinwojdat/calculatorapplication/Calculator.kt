@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import pl.marcinwojdat.calculatorapplication.buttons.CalculatorButton
@@ -30,6 +31,7 @@ fun Calculator(
 ) {
     Box(
         modifier = modifier
+            .background(color = Color(20, 20, 20))
     ) {
         Column(
             modifier = Modifier
@@ -38,12 +40,14 @@ fun Calculator(
             verticalArrangement = Arrangement.spacedBy(buttonSpacing)
         ) {
             Text(
-                text = calculatorState,
+                text = if (calculatorState.isEmpty()) "0" else calculatorState,
+                color = Color.White,
                 textAlign = TextAlign.End,
-                fontSize = 80.sp,
+                fontSize = calculateFontSizeForOperation(calculatorState),
+                lineHeight = calculateFontSizeForOperation(calculatorState),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = 32.dp)
+                    .padding(vertical = 16.dp)
             )
 
             Row(
@@ -96,4 +100,12 @@ fun Calculator(
         }
     }
 
+}
+
+private fun calculateFontSizeForOperation(operation: String) : TextUnit {
+    if (operation.length < 9) return 80.sp
+    else if (operation.length < 11) return 60.sp
+    else if (operation.length < 15) return 50.sp
+    else if (operation.length < 18) return 40.sp
+    else return 35.sp
 }
